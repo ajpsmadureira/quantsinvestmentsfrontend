@@ -1,0 +1,6 @@
+.submit_button {
+  color: var(--color-white) !important;
+  background-color: var(--color-blue-light) !important;
+  border-width: 1px !important;
+  border-radius: 30px !important;
+}

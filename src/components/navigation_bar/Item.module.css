@@ -1,0 +1,18 @@
+.button {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--color-transparent);
+  text-decoration: none;
+  background: none;
+  border: none;
+  outline: 0;
+  width: 100%;
+}
+
+.button:hover {
+  color: var(--color-gray-light);
+}
+
+.button:focus {
+  outline: 0;
+}

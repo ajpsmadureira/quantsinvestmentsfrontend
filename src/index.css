@@ -1,0 +1,42 @@
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 500px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+:root {
+  --color-transparent: #ffffff80;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-blue: #5e72e4;
+  --color-green: #28a745;
+  --color-red: #dc3545;
+  --color-yellow: #ffc107;
+  --color-gray: #a7a5a5;
+  --color-blue-darker: #344675;
+  --color-green-darker: #20943a;
+  --color-red-darker: #821722;
+  --color-yellow-darker: #e6ad00;
+  --color-gray-darker: #37383d;
+  --color-blue-light: #1d8cf8;
+  --color-green-light: rgb(119, 236, 117);
+  --color-red-light: rgb(253, 89, 98);
+  --color-yellow-light: #ffc10780;
+  --color-gray-light: #f3f3f3;
+  --gradient-blue: linear-gradient(to top left, #2f5d8e, #6aa0da);
+  --gradient-green: linear-gradient(to top left, #28a745, #56de75);
+  --gradient-red: linear-gradient(to top left, #9e313c, #dc6772);
+  --gradient-yellow: linear-gradient(to top left, #927623, #dcb952);
+}
+
+a {
+  color: var(--color-transparent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-gray-light);
+  text-decoration: none;
+}

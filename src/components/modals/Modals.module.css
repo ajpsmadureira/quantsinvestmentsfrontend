@@ -1,0 +1,128 @@
+.input,
+.input:focus,
+.input:disabled,
+.input[type="password"],
+.input[type="email"],
+.input[type="text"],
+.input[type="password"]:focus,
+.input[type="email"]:focus,
+.input[type="text"]:focus,
+.input[type="password"]:disabled,
+.input[type="email"]:disabled,
+.input[type="text"]:disabled {
+  background-color: transparent;
+  color: var(--color-white);
+  border-color: var(--color-gray);
+  outline: none;
+  outline-width: 0;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+.div_buydatepopup,
+.div_selldatepopup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.div_buydatepopup,
+.div_selldatepopup {
+  width: 100%;
+}
+
+.div_buydatepopup .span_buydatepopuptext,
+.div_selldatepopup .span_selldatepopuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: var(--color-gray-darker);
+  color: var(--color-gray-light);
+  font-size: 8pt;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.div_buydatepopup .span_buydatepopuptext::after,
+.div_selldatepopup .span_selldatepopuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.div_buydatepopup .show,
+.div_selldatepopup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.field_ok {
+  border: solid 1px var(--color-green-light) !important;
+}
+
+.field_nok {
+  border: solid 1px var(--color-red-light) !important;
+}
+
+.h5 {
+  margin-bottom: 2rem;
+}
+
+.p {
+  margin: 0rem;
+}
+
+.input {
+  margin-bottom: 1rem;
+}
+
+.reactmodal-content {
+  background-color: var(--color-blue-darker);
+  color: white;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.reactmodal-header {
+  border-bottom: 0;
+}
+
+.reactmodal-dialog {
+  margin: 0;
+  pointer-events: "all";
+}

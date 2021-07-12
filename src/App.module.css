@@ -1,0 +1,19 @@
+.App {
+  font-family: "Poppins", sans-serif;
+  min-height: 500px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("images/background.jpg");
+}
+
+.dark-overlay {
+  width: 100%;
+  min-height: 500px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.div_content {
+  padding: 2rem;
+  text-align: center;
+}

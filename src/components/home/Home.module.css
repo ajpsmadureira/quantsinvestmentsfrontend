@@ -1,0 +1,126 @@
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+h1.largescreen {
+  color: var(--color-white);
+  padding: 1rem;
+}
+
+h1.smallscreen {
+  display: none;
+}
+
+h2.largescreen {
+  width: 100%;
+  color: var(--color-white);
+  padding: 1rem;
+}
+
+h3.smallscreen {
+  display: none;
+}
+
+.div_offer {
+  padding: 60px 0px;
+  background-color: var(--color-blue-darker);
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.div_email {
+  padding: 60px 0px;
+  background-color: var(--color-gray-darker);
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.div_email--body {
+  background-color: var(--color-blue-darker) !important;
+  padding: 15px;
+}
+
+@media (min-width: 767px) {
+  .div_emailRegistration--firstcolumn {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+  .div_emailRegistration--secondcolumn {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .input-group {
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .div_emailRegistration--firstcolumn,
+  .div_emailRegistration--secondcolumn {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .input-group {
+    margin-bottom: 1rem;
+  }
+}
+
+.span_email-icon {
+  background-color: transparent !important;
+  align-items: center !important;
+  text-align: right !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  color: var(--color-gray) !important;
+  border-color: var(--color-gray) !important;
+}
+
+.button_register--email {
+  color: var(--color-white) !important;
+  background-color: var(--color-blue-light) !important;
+  border-width: 1px !important;
+  border-radius: 30px !important;
+}
+
+.span_email--registeredok {
+  margin: 0;
+  font-size: 10pt;
+}
+
+.input_email,
+.input_email:focus,
+.input_email:disabled {
+  background-color: transparent !important;
+  border-left: none !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-gray) !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.chartContainerHomeScreenOuter {
+  height: 390px;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.chartContainerHomeScreenInner {
+  display: inline-block;
+}
+
+@media (max-width: 991px) {
+  .chartContainerHomeScreenInner {
+    width: 100%;
+  }
+}
+
+@media (min-width: 991px) {
+  .chartContainerHomeScreenInner {
+    width: 50%;
+  }
+}

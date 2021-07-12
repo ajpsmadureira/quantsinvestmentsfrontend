@@ -1,0 +1,23 @@
+.img-circular {
+  height: 16px;
+  background-size: cover;
+  display: block;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background-color: white;
+}
+
+@media (max-width: 767px) {
+  .img-circular {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (min-width: 767px) {
+  .img-circular {
+    width: 20px;
+    height: 20px;
+  }
+}
