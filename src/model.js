@@ -86,7 +86,7 @@ export async function getPerformanceAndBenchmarks() {
  * Gets the symbols synchronously from the server, and updates the application state accordingly.
  * @returns {Array} Array with symbols, earliest date of tickers, latest date of tickers
  */
-export async function refreshRealTimeInformation() {
+export async function getRealTimeInformation() {
   try {
     const realtimeInformation = await Helpers.callServer(
       "/rest/getrealtimeinformation",

@@ -80,6 +80,8 @@ function RecommendationsLargerScreens(props) {
 
     let recentPrice;
 
+    console.log(recommendedStocksRecentTickerPrices);
+
     if (isMarketOpenNow && recommendedStocksRecentTickerPrices) {
       const recommendedStock = recommendedStocksRecentTickerPrices.find(
         function (e) {

@@ -146,18 +146,18 @@ function App() {
   useEffect(() => {
     if (realtimeInformationRefreshed) return;
 
-    async function refreshRealTimeInformation() {
+    async function getRealTimeInformation() {
       try {
-        const realtimeData = await Model.refreshRealTimeInformation();
+        const realtimeData = await Model.getRealTimeInformation();
         appData.realtimeData = realtimeData;
         dispatch(appSlice.actions.setRealtimeDataRefreshed());
       } catch (err) {
         dispatch(appSlice.actions.setRealtimeData([null, null, []]));
       }
     }
-    refreshRealTimeInformation();
+    getRealTimeInformation();
     setTimeout(() => {
-      dispatch(appSlice.actions.refreshRealtimeData());
+      dispatch(appSlice.actions.getRealtimeData());
     }, 5000);
   }, [realtimeInformationRefreshed, dispatch]);
 
