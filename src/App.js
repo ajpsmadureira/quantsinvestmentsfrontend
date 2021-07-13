@@ -152,12 +152,12 @@ function App() {
         appData.realtimeData = realtimeData;
         dispatch(appSlice.actions.setRealtimeDataRefreshed());
       } catch (err) {
-        dispatch(appSlice.actions.setRealtimeData([null, null, []]));
+        appData.realtimeData = [null, null, []];
       }
     }
     getRealTimeInformation();
     setTimeout(() => {
-      dispatch(appSlice.actions.getRealtimeData());
+      dispatch(appSlice.actions.refreshRealtimeData());
     }, 5000);
   }, [realtimeInformationRefreshed, dispatch]);
 

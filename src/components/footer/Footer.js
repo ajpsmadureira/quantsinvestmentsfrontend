@@ -6,7 +6,7 @@ function Footer() {
     <footer className={styles.footer}>
       <div className="row align-items-center">
         <div className="col-lg-4">
-          <p className={styles.p_copyright}>
+          <p className={`${styles["p_copyright"]}`}>
             Copyright &copy; 2021 Quants.Investments All Rights Reserved
           </p>
         </div>
@@ -18,7 +18,7 @@ function Footer() {
           />
         </div>
         <div className="col-lg-4">
-          <p>
+          <p className={styles["p_footer"]}>
             <a
               className={styles.a_contactus}
               href="mailto: no-reply@quants.investments"

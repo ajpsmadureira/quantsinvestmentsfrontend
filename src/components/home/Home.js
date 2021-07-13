@@ -7,6 +7,11 @@ import { useEffect, useRef, Fragment } from "react";
 import * as Model from "../../model";
 import Chart from "../Chart";
 import * as Config from "../../config";
+import offerInvestments from "../../images/offerInvestments.png";
+import offerDailyPicks from "../../images/offerDailyPicks.png";
+import offerNews from "../../images/offerNews.png";
+import offerMarkets from "../../images/offerMarkets.jpg";
+import Carousel from "react-bootstrap/Carousel";
 
 let chart;
 
@@ -290,6 +295,133 @@ function Home(props) {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`${styles["div_offer"]} d-xs-block d-md-none`}>
+        <div className="container">
+          <div className="align-items-center">
+            <h2 className="text-center mb-5">Product Offer</h2>
+            <div className="text-center">
+              <div className={`${styles.icon} text-center`}>
+                <i className="fab fa-buffer"></i>
+              </div>
+              <h4 className="info-title">Daily Best Stock Picks</h4>
+              <p className="description px-0">
+                Our algorithms work around-the-clock to provide to you daily a
+                selection of the best stocks
+              </p>
+            </div>
+            <div className="text-center">
+              <div className={`${styles.icon} text-center`}>
+                <i className="fas fa-solar-panel"></i>
+              </div>
+              <h4 className="info-title">Investments Panel</h4>
+              <p className="description px-0">
+                Register your investments to receive sell/hold/dump management
+                advice about them
+              </p>
+            </div>
+            <div className="text-center">
+              <div className={`${styles.icon} text-center`}>
+                <i className="far fa-newspaper"></i>
+              </div>
+              <h4 className="info-title">Most Relevant News</h4>
+              <p className="description px-0">
+                Our algorithms cut through media clutter and provide relevant
+                news to augment our advice
+              </p>
+            </div>
+            <div className="text-center">
+              <div className={`${styles.icon} text-center`}>
+                <i className="fas fa-exchange-alt"></i>
+              </div>
+              <h4 className="info-title">Most Dynamic Markets</h4>
+              <p className="description px-0">
+                We work with selected stocks from NYSE and NASDAQ and will keep
+                adding high potential assets
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`${styles["div_offer"]} d-none d-md-block`}>
+        <div className="container">
+          <div className="align-items-center row">
+            <div className="p-sm-0 col-lg-12">
+              <h2 className="title text-center mb-5">Product Offer</h2>
+
+              <Carousel fade style={{ height: "450px" }}>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-50"
+                    src={offerDailyPicks}
+                    alt="First slide"
+                    style={{ margin: "auto" }}
+                  />
+                  <Carousel.Caption
+                    style={{ position: "initial", textAlign: "center" }}
+                  >
+                    <h3>Daily Best Stock Picks</h3>
+                    <p>
+                      Our algorithms work around-the-clock to provide to you
+                      daily a selection of the best stocks
+                    </p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-50"
+                    src={offerInvestments}
+                    alt="Second slide"
+                    style={{ margin: "auto" }}
+                  />
+                  <Carousel.Caption
+                    style={{ position: "initial", textAlign: "center" }}
+                  >
+                    <h3>Investments Panel</h3>
+                    <p>
+                      Register your investments to receive sell/hold/dump
+                      management advice about them
+                    </p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-50"
+                    src={offerNews}
+                    alt="Third slide"
+                    style={{ margin: "auto" }}
+                  />
+                  <Carousel.Caption
+                    style={{ position: "initial", textAlign: "center" }}
+                  >
+                    <h3>Most Relevant News</h3>
+                    <p>
+                      Our algorithms cut through media clutter and provide
+                      relevant news to augment our advice
+                    </p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-50"
+                    src={offerMarkets}
+                    alt="Fourth slide"
+                    style={{ margin: "auto" }}
+                  />
+                  <Carousel.Caption
+                    style={{ position: "initial", textAlign: "center" }}
+                  >
+                    <h3>Most Dynamic Markets</h3>
+                    <p>
+                      We work with selected stocks from NYSE and NASDAQ and will
+                      keep adding high potential assets
+                    </p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              </Carousel>
             </div>
           </div>
         </div>

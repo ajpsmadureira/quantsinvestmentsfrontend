@@ -124,3 +124,16 @@ h3.smallscreen {
     width: 50%;
   }
 }
+
+.carousel-caption {
+  position: initial !important;
+}
+
+@media (max-width: 767px) {
+  .carousel-inner {
+    height: 400px;
+  }
+  h5 {
+    margin-bottom: 2rem;
+  }
+}

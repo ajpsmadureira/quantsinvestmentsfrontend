@@ -4,6 +4,7 @@ import panelsSlice from "../../store/panels-slice";
 import StockLogo from "../StockLogo";
 import * as Helpers from "../../helpers";
 import styles from "./../Panels.module.css";
+import { useRef } from "react";
 
 function RecommendationsSmallerScreens(props) {
   const marketState = props.appData.marketState;
@@ -18,6 +19,8 @@ function RecommendationsSmallerScreens(props) {
     (state) => state.panels.indexFirstTableElement
   );
 
+  const tableRef = useRef();
+
   const dispatch = useDispatch();
 
   const clickPreviousPageHandler = function (e) {
@@ -28,6 +31,7 @@ function RecommendationsSmallerScreens(props) {
     dispatch(
       panelsSlice.actions.setIndexFirstTableElement(newIndexFirstTableElement)
     );
+    tableRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const clickNextPageHandler = function (e) {
@@ -39,6 +43,7 @@ function RecommendationsSmallerScreens(props) {
     dispatch(
       panelsSlice.actions.setIndexFirstTableElement(newIndexFirstTableElement)
     );
+    tableRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   let innerHTML = (
@@ -124,7 +129,7 @@ function RecommendationsSmallerScreens(props) {
                   : styles["red-light"]
               }
             >
-              {recommendations[i][3] >= 0 ? "+" : ""}{" "}
+              {recommendations[i][3] >= 0 ? "+" : ""}
               {recommendations[i][3].toFixed(2)}%
             </span>{" "}
             Last Month:{" "}
@@ -135,7 +140,7 @@ function RecommendationsSmallerScreens(props) {
                   : styles["red-light"]
               }
             >
-              {recommendations[i][4] >= 0 ? "+" : ""}{" "}
+              {recommendations[i][4] >= 0 ? "+" : ""}
               {recommendations[i][4].toFixed(2)}%
             </span>
           </small>
@@ -291,7 +296,7 @@ function RecommendationsSmallerScreens(props) {
     }
   }
 
-  return <tbody>{innerHTML}</tbody>;
+  return <tbody ref={tableRef}>{innerHTML}</tbody>;
 }
 
 export default RecommendationsSmallerScreens;

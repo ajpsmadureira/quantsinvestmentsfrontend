@@ -159,8 +159,9 @@ function InvestmentsSmallerScreens(props) {
         <td style={{ display: "none" }}></td>
         <td style={{ paddingBottom: "2rem", textAlign: "center" }} colSpan="3">
           <h4>
-            {`Yield: ${balances[balances.length - 1] >= 0 ? "+" : "-"}
-            ${Math.round(balances[balances.length - 1])} USD`}
+            {`Yield: ${
+              balances[balances.length - 1] >= 0 ? "+" : "-"
+            }${Math.round(balances[balances.length - 1])} USD`}
           </h4>
         </td>
       </tr>,
@@ -211,27 +212,36 @@ function InvestmentsSmallerScreens(props) {
       <tr key={count.toString()}>
         <td style={{ display: "none" }}> {sortedInvestments[i].id} </td>
         <td colSpan="3" style={{ paddingBottom: "2rem", textAlign: "center" }}>
-          {`${indexFirstTableElement + count}`} &nbsp;&nbsp; {instrument.name}
+          {`${indexFirstTableElement + count}. ${instrument.name} `}
           <br />
-          <div style={{ display: "inline-block", verticalAlign: "middle" }}>
-            <StockLogo filename={sortedInvestments[i].logo}></StockLogo>
-          </div>
-          &nbsp;&nbsp;{instrument.symbol}, {instrument.exchange} <br />
-          {sortedInvestments[i].buying_number}
-          {sortedInvestments[i].buying_number === 1 ? " share" : " shares"} at $
-          {sortedInvestments[i].buying_price} USD/share <br />
-          on $
-          {Helpers.getDateStringFromEpoch(
+          {
+            <div style={{ display: "inline-block", verticalAlign: "middle" }}>
+              <StockLogo filename={sortedInvestments[i].logo}></StockLogo>
+            </div>
+          }
+          {` ${instrument.symbol}, ${instrument.exchange}`} <br />
+          {`${sortedInvestments[i].buying_number} ${
+            sortedInvestments[i].buying_number === 1 ? " share" : " shares"
+          } at
+          ${sortedInvestments[i].buying_price} USD/share`}
+          <br />
+          {`on ${Helpers.getDateStringFromEpoch(
             sortedInvestments[i].buying_timestamp
-          )}
+          )}`}
           <br />
-          Yield:&nbsp;
-          <span
-            className={gain >= 0 ? styles["green-light"] : styles["red-light"]}
-          >
-            {gain >= 0 ? "+" : ""} {gain}%
-          </span>
-          &nbsp;-&nbsp;{recommendation} <br />
+          {`Yield: `}
+          {
+            <span
+              className={
+                gain >= 0 ? styles["green-light"] : styles["red-light"]
+              }
+            >
+              {gain >= 0 ? "+" : ""}
+              {gain}%
+            </span>
+          }{" "}
+          {` - ${recommendation}`}
+          <br />
           <button
             onClick={clickSellInvestmentModal}
             type="button"

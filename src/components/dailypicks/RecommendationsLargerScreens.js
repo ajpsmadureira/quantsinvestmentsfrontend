@@ -80,8 +80,6 @@ function RecommendationsLargerScreens(props) {
 
     let recentPrice;
 
-    console.log(recommendedStocksRecentTickerPrices);
-
     if (isMarketOpenNow && recommendedStocksRecentTickerPrices) {
       const recommendedStock = recommendedStocksRecentTickerPrices.find(
         function (e) {
@@ -131,7 +129,9 @@ function RecommendationsLargerScreens(props) {
               : styles["red-light"]
           }`}
         >
-           {recommendations[i][3].toFixed(2)}%
+          {`${recommendations[i][3] >= 0 ? "+" : ""}${recommendations[
+            i
+          ][3].toFixed(2)}%`}
         </td>
         <td
           className={`text-center ${
@@ -140,7 +140,10 @@ function RecommendationsLargerScreens(props) {
               : styles["red-light"]
           }`}
         >
-           {recommendations[i][4].toFixed(2)}%
+           
+          {`${recommendations[i][4] >= 0 ? "+" : ""}${recommendations[
+            i
+          ][4].toFixed(2)}%`}
         </td>
         <td
           className="text-center"

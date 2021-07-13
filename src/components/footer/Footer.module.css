@@ -52,13 +52,13 @@
 }
 
 @media (max-width: 991px) {
-  p {
+  .p_footer {
     text-align: center;
   }
 }
 
 @media (min-width: 991px) {
-  p {
+  .p_footer {
     text-align: left;
   }
 }

@@ -40,3 +40,7 @@ a:hover {
   color: var(--color-gray-light);
   text-decoration: none;
 }
+
+.btn:hover {
+  color: #ffffff;
+}
