@@ -351,7 +351,6 @@ function Home(props) {
           <div className="align-items-center row">
             <div className="p-sm-0 col-lg-12">
               <h2 className="title text-center mb-5">Product Offer</h2>
-
               <Carousel fade style={{ height: "450px" }}>
                 <Carousel.Item>
                   <img

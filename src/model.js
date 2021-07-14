@@ -55,14 +55,19 @@ export async function getPerformanceAndBenchmarks() {
       undefined
     );
 
-    const performance = performanceAndBenchmarks.performance;
+    const performance = performanceAndBenchmarks.performance.map((e) => {
+      return {
+        x: e.x,
+        y: e.close,
+      };
+    });
 
     const sp500 = performanceAndBenchmarks.sp500.map((e) => {
       return {
         x: e.x,
         y:
           Config.PERFORMANCE_BOOK_VALUE *
-          (e.y / performanceAndBenchmarks.sp500[0].y - 1),
+          (e.close / performanceAndBenchmarks.sp500[0].close - 1),
       };
     });
 
@@ -71,7 +76,7 @@ export async function getPerformanceAndBenchmarks() {
         x: e.x,
         y:
           Config.PERFORMANCE_BOOK_VALUE *
-          (e.y / performanceAndBenchmarks.dji[0].y - 1),
+          (e.close / performanceAndBenchmarks.dji[0].close - 1),
       };
     });
 
@@ -236,16 +241,16 @@ export function getGlobalInvestmentsGraph(investments) {
   // create vector of timestamps
 
   let minimumTimestamp = investments
-    .flatMap((e) => e.ticker)
+    .flatMap((x) => x.timestamps)
     .reduce(
-      (agg, ele) => (ele.x < agg ? ele.x : agg),
+      (agg, ele) => (ele < agg ? ele : agg),
       Helpers.getEpochFromDateString(Helpers.getDateStringFromDate(new Date()))
     );
 
-  const maximumTimestamp = investments
-    .flatMap((e) => e.ticker)
+  let maximumTimestamp = investments
+    .flatMap((x) => x.timestamps)
     .reduce(
-      (agg, ele) => (ele.x > agg ? ele.x : agg),
+      (agg, ele) => (ele > agg ? ele : agg),
       Helpers.getEpochFromDateString("01/01/2018")
     );
 
@@ -262,16 +267,17 @@ export function getGlobalInvestmentsGraph(investments) {
 
   timestamps.forEach(function (timestamp, idx) {
     investments.forEach(function (investment) {
-      investment.ticker.forEach(function (ticker) {
+      for (let i = 0; i < investment.timestamps.length; i++) {
         if (
           (investment.state !== 4 ||
             timestamp < investment.selling_timestamp) &&
-          ticker.x === timestamp &&
+          investment.timestamps[i] === timestamp &&
           investment.buying_timestamp !== timestamp
         )
           balances[idx] +=
-            ticker.y - investment.buying_price * investment.buying_number;
-      });
+            investment.closes[i] -
+            investment.buying_price * investment.buying_number;
+      }
       if (investment.state === 4 && timestamp >= investment.selling_timestamp)
         balances[idx] +=
           (investment.selling_price - investment.buying_price) *

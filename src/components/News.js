@@ -1,9 +1,7 @@
 function News(props) {
-  const news = props.news;
+  const newsParsed = props.news;
 
-  if (!news) return <h5> No recent news available</h5>;
-
-  const newsParsed = JSON.parse(news.news);
+  if (!newsParsed) return <h5> No recent news available</h5>;
 
   if (newsParsed.length === 0) return <h5> No recent news available </h5>;
 
@@ -18,7 +16,7 @@ function News(props) {
       markup,
       <p key={index}>
         {" "}
-        ${newsParsed[index].date.substr(0, 10)}{" "}
+        {newsParsed[index].date.substr(0, 10)}{" "}
         <a href={newsParsed[index].link} rel="noreferrer" target="_blank">
           {" "}
           {newsParsed[index].title}{" "}

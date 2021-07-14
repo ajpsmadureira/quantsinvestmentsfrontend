@@ -78,7 +78,16 @@ function Panels(props) {
             const investment = props.appData.investments.find(
               (e) => e.id === +id
             );
-            ticker = investment.ticker;
+
+            ticker = [];
+
+            for (let i = 0; i < investment.timestamps.length; i++) {
+              ticker.push({
+                x: investment.timestamps[i],
+                y: investment.closes[i],
+              });
+            }
+
             ticker = [
               {
                 type: "line",
