@@ -79,6 +79,8 @@ function RecommendationsSmallerScreens(props) {
   let count = 0;
 
   for (let i = indexFirstTableElement; i < recommendations.length; i++) {
+    if (count === Config.NUMBER_RESULTS_PER_PAGE) break;
+
     let recentPrice;
 
     if (isMarketOpenNow && recommendedStocksRecentTickerPrices) {
@@ -90,10 +92,6 @@ function RecommendationsSmallerScreens(props) {
       if (recommendedStock) recentPrice = recommendedStock.close.toFixed(2);
     } else recentPrice = null;
 
-    if (count === Config.NUMBER_RESULTS_PER_PAGE) break;
-
-    ++count;
-
     const instrument =
       instruments[
         instruments
@@ -101,11 +99,15 @@ function RecommendationsSmallerScreens(props) {
           .findIndex((x) => x === recommendations[i][0])
       ];
 
+    if (!instrument) {
+      continue;
+    }
+
     innerHTML = [
       innerHTML,
       <tr key="4">
         <td colSpan="3" style={{ paddingBottom: "2rem", textAlign: "center" }}>
-          {indexFirstTableElement + count} .&nbsp;&nbsp; {instrument.name}{" "}
+          {indexFirstTableElement + count + 1} .&nbsp;&nbsp; {instrument.name}{" "}
           <br />
           <div style={{ display: "inline-block", verticalAlign: "middle" }}>
             <StockLogo filename={recommendations[i][5]} />
@@ -147,6 +149,8 @@ function RecommendationsSmallerScreens(props) {
         </td>
       </tr>,
     ];
+
+    ++count;
   }
 
   innerHTML = [
@@ -189,8 +193,7 @@ function RecommendationsSmallerScreens(props) {
     innerHTML,
     <tr key="6">
       <td style={{ textAlign: "center" }} colSpan="3">
-        {" "}
-        Markets Performance:{" "}
+        Markets Performance:
       </td>
     </tr>,
   ];
@@ -260,7 +263,7 @@ function RecommendationsSmallerScreens(props) {
   const hours = Math.floor((minutesUntilMarketOpens - days * 24 * 60) / 60);
   const minutes = minutesUntilMarketOpens - days * 24 * 60 - hours * 60;
 
-  if (isMarketOpenNow)
+  if (isMarketOpenNow) {
     innerHTML = [
       innerHTML,
       <tr key="8">
@@ -269,7 +272,7 @@ function RecommendationsSmallerScreens(props) {
         </td>
       </tr>,
     ];
-  else {
+  } else {
     if (minutes !== 0 || hours !== 0 || days !== 0) {
       let label = "Markets will open in ";
       if (days > 1) label += days + " days";

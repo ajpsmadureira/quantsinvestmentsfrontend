@@ -128,6 +128,7 @@ function App() {
     async function getPerformanceData() {
       try {
         const performanceData = await Model.getPerformanceAndBenchmarks();
+
         appData.performanceData = performanceData;
         dispatch(appSlice.actions.setPerformanceDataRetrieved());
       } catch (err) {

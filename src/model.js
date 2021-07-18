@@ -57,14 +57,14 @@ export async function getPerformanceAndBenchmarks() {
 
     const performance = performanceAndBenchmarks.performance.map((e) => {
       return {
-        x: e.x,
+        x: e.timestamp,
         y: e.close,
       };
     });
 
     const sp500 = performanceAndBenchmarks.sp500.map((e) => {
       return {
-        x: e.x,
+        x: e.timestamp,
         y:
           Config.PERFORMANCE_BOOK_VALUE *
           (e.close / performanceAndBenchmarks.sp500[0].close - 1),
@@ -73,7 +73,7 @@ export async function getPerformanceAndBenchmarks() {
 
     const dji = performanceAndBenchmarks.dji.map((e) => {
       return {
-        x: e.x,
+        x: e.timestamp,
         y:
           Config.PERFORMANCE_BOOK_VALUE *
           (e.close / performanceAndBenchmarks.dji[0].close - 1),
