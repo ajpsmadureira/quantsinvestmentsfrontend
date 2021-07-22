@@ -27,18 +27,18 @@ function InvestmentsSmallerScreens(props) {
 
   if (sortedInvestments.length > 0) {
     minimumTimestamp = investments
-      .flatMap((e) => e.ticker)
+      .flatMap((e) => e.timestamps)
       .reduce(
-        (agg, ele) => (ele.x < agg ? ele.x : agg),
+        (agg, ele) => (ele < agg ? ele : agg),
         Helpers.getEpochFromDateString(
           Helpers.getDateStringFromDate(new Date())
         )
       );
 
     maximumTimestamp = investments
-      .flatMap((e) => e.ticker)
+      .flatMap((e) => e.timestamps)
       .reduce(
-        (agg, ele) => (ele.x > agg ? ele.x : agg),
+        (agg, ele) => (ele > agg ? ele : agg),
         Helpers.getEpochFromDateString("01/01/2018")
       );
 
@@ -55,15 +55,19 @@ function InvestmentsSmallerScreens(props) {
 
     timestamps.forEach(function (timestamp, idx) {
       investments.forEach(function (investment) {
-        investment.ticker.forEach(function (ticker) {
+        investment.timestamps.forEach(function (
+          timestampInvestment,
+          idxInvestment
+        ) {
           if (
             (investment.state !== 4 ||
               timestamp < investment.selling_timestamp) &&
-            ticker.x === timestamp &&
+            timestampInvestment === timestamp &&
             investment.buying_timestamp !== timestamp
           )
             balances[idx] +=
-              ticker.y - investment.buying_price * investment.buying_number;
+              investment.closes[idxInvestment] -
+              investment.buying_price * investment.buying_number;
         });
         if (investment.state === 4 && timestamp >= investment.selling_timestamp)
           balances[idx] +=
@@ -190,9 +194,9 @@ function InvestmentsSmallerScreens(props) {
     ++count;
 
     const gain = (
-      ((sortedInvestments[i].ticker[sortedInvestments[i].ticker.length - 1].y -
-        sortedInvestments[i].ticker[0].y) /
-        sortedInvestments[i].ticker[0].y) *
+      ((sortedInvestments[i].closes[sortedInvestments[i].closes.length - 1] -
+        sortedInvestments[i].closes[0]) /
+        sortedInvestments[i].closes[0]) *
       100
     ).toFixed(2);
 
