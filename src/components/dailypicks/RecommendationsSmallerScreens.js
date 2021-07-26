@@ -205,7 +205,7 @@ function RecommendationsSmallerScreens(props) {
   const labels = new Array(4);
 
   if (
-    marketState[marketState.length - 1].timestamp >
+    marketState[marketState.length - 1]?.timestamp >
     todaysEpoch - 5 * 86400000
   ) {
     for (let i = marketState.length - 1; i >= marketState.length - 4; i--) {

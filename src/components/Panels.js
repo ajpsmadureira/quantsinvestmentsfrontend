@@ -96,14 +96,17 @@ function Panels(props) {
                 xValueType: "dateTime",
               },
             ];
-            symbol =
-              props.appData.instruments[
-                props.appData.instruments
-                  .map((x) => x.id)
-                  .findIndex(
-                    (x) => x === Number.parseInt(investment.instrumentId)
-                  )
-              ].name;
+
+            const indexInstrument = props.appData.instruments
+              .map((x) => x.id)
+              .findIndex((x) => x === Number.parseInt(investment.instrumentId));
+
+            if (indexInstrument !== -1) {
+              symbol = props.appData.instruments[indexInstrument].name;
+            } else {
+              symbol = investment.symbol;
+            }
+
             dispatch(panelsSlice.actions.setGraphDataAvailable());
           } else {
             if (!investmentsRetrieved) return;

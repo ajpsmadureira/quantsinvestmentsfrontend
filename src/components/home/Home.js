@@ -6,7 +6,6 @@ import homeSlice from "../../store/home-slice";
 import { useEffect, useRef, Fragment } from "react";
 import * as Model from "../../model";
 import Chart from "../Chart";
-import * as Config from "../../config";
 import offerInvestments from "../../images/offerInvestments.png";
 import offerDailyPicks from "../../images/offerDailyPicks.png";
 import offerNews from "../../images/offerNews.png";
@@ -90,23 +89,16 @@ function Home(props) {
 
     chart.title.set(
       "text",
-      "Actual stock portfolio performance following Quants.Investments advice"
+      "Stock portfolio backtest performance following Quants.Investments advice (WIP)"
     );
 
     const performanceYield = Math.round(
-      (performance[performance.length - 1].y * 100) /
-        Config.PERFORMANCE_BOOK_VALUE
+      (performance[performance.length - 1].y * 100) / performance[0].y
     );
 
     chart.subtitles[0].set(
       "text",
-      `Book Value: $${
-        Config.PERFORMANCE_BOOK_VALUE
-      }         Return: $${Math.round(
-        performance[performance.length - 1].y
-      )}         Yield: ${
-        performanceYield >= 0 ? "+" : "-"
-      }${performanceYield}%`
+      `Yield: ${performanceYield >= 0 ? "+" : "-"}${performanceYield}%`
     );
   }, [props.performanceData]);
 

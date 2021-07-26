@@ -204,26 +204,38 @@ function InvestmentsSmallerScreens(props) {
       sortedInvestments[i].state
     );
 
-    const instrument =
-      instruments[
-        instruments
-          .map((x) => x.id)
-          .findIndex((x) => x === sortedInvestments[i].instrumentId)
-      ];
+    const indexInstrument = instruments
+      .map((x) => x.id)
+      .findIndex((x) => x === sortedInvestments[i].instrumentId);
+
+    let symbol;
+    let exchange;
+    let name;
+
+    if (indexInstrument !== -1) {
+      const instrument = instruments[indexInstrument];
+      name = instrument.name;
+      symbol = instrument.symbol;
+      exchange = instrument.exchange;
+    } else {
+      name = sortedInvestments[i].symbol;
+      symbol = sortedInvestments[i].symbol;
+      exchange = sortedInvestments[i].exchange;
+    }
 
     innerHTML = [
       innerHTML,
       <tr key={count.toString()}>
         <td style={{ display: "none" }}> {sortedInvestments[i].id} </td>
         <td colSpan="3" style={{ paddingBottom: "2rem", textAlign: "center" }}>
-          {`${indexFirstTableElement + count}. ${instrument.name} `}
+          {`${indexFirstTableElement + count}. ${symbol} `}
           <br />
           {
             <div style={{ display: "inline-block", verticalAlign: "middle" }}>
               <StockLogo filename={sortedInvestments[i].logo}></StockLogo>
             </div>
           }
-          {` ${instrument.symbol}, ${instrument.exchange}`} <br />
+          {` ${name}, ${exchange}`} <br />
           {`${sortedInvestments[i].buying_number} ${
             sortedInvestments[i].buying_number === 1 ? " share" : " shares"
           } at
@@ -252,10 +264,11 @@ function InvestmentsSmallerScreens(props) {
             data-toggle="tooltip"
             data-placement="top"
             title="Close"
-            style={{ fontSize: "12pt" }}
-            className={`${styles["button_edit"]} ${
-              sortedInvestments[i].state === 4 ? "hidden" : ""
-            } btn btn-sm rounded-0`}
+            style={{
+              fontSize: "12pt",
+              display: sortedInvestments[i].state === 4 ? "none" : "",
+            }}
+            className={`${styles["button_edit"]} btn btn-sm rounded-0`}
           >
             <i className="fa fa-edit"></i>
           </button>

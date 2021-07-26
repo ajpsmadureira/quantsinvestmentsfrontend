@@ -29,7 +29,6 @@ function Operations() {
   useEffect(() => {
     async function getGraphData() {
       try {
-        console.log("getting graph data");
         metrics = await Model.getMetrics();
         dispatch(operationsSlice.actions.setGraphDataAvailable());
       } catch (err) {
@@ -43,8 +42,6 @@ function Operations() {
 
   useEffect(() => {
     if (!graphDataAvailable) return;
-
-    console.log("rendering graph");
 
     schedulerProcessesChart.options.axisY.title = "Miliseconds";
 
@@ -77,11 +74,11 @@ function Operations() {
     schedulerProcessesChart.options.data.push({
       type: "column",
       showInLegend: true,
-      name: "Update Traders",
+      name: "Update Fundamentals",
       color: "rgb(119, 236, 117)",
       yValueFormatString: "#",
       xValueType: "dateTime",
-      dataPoints: metrics.datapointsListTraders,
+      dataPoints: metrics.datapointsFundamentals,
     });
 
     schedulerProcessesChart.options.data.push({

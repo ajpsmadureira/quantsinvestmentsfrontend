@@ -10,8 +10,6 @@ import * as Model from "./../../model";
 function InvestmentsLargerScreens(props) {
   const investments = props.appData.investments;
 
-  const instruments = props.appData.instruments;
-
   const indexFirstTableElement = useSelector(
     (state) => state.panels.indexFirstTableElement
   );
@@ -144,15 +142,7 @@ function InvestmentsLargerScreens(props) {
         <td className={styles["table_td--dispensable"]}>
           <StockLogo filename={sortedInvestments[i].logo} />
         </td>
-        <td>
-          {
-            instruments[
-              instruments
-                .map((x) => x.id)
-                .findIndex((x) => x === sortedInvestments[i].instrumentId)
-            ].symbol
-          }
-        </td>
+        <td>{sortedInvestments[i].symbol}</td>
         <td className={styles["table_td--dispensable"]} align="center">
           {Helpers.getDateStringFromEpoch(
             sortedInvestments[i].buying_timestamp
@@ -175,9 +165,8 @@ function InvestmentsLargerScreens(props) {
             data-toggle="tooltip"
             data-placement="top"
             title="Close"
-            className={`${styles["button_edit"]} ${
-              sortedInvestments[i].state === 4 ? "hidden" : ""
-            } btn btn-sm rounded-0`}
+            className={`${styles["button_edit"]} btn btn-sm rounded-0`}
+            style={{ display: sortedInvestments[i].state === 4 ? "none" : "" }}
           >
             <i className="fa fa-edit"></i>
           </button>

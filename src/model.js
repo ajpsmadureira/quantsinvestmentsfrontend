@@ -62,21 +62,26 @@ export async function getPerformanceAndBenchmarks() {
       };
     });
 
+    // const sp500 = performanceAndBenchmarks.sp500.map((e) => {
+    //   return {
+    //     x: e.timestamp,
+    //     y:
+    //       Config.PERFORMANCE_BOOK_VALUE *
+    //       (e.close / performanceAndBenchmarks.sp500[0].close),
+    //   };
+    // });
+
     const sp500 = performanceAndBenchmarks.sp500.map((e) => {
       return {
         x: e.timestamp,
-        y:
-          Config.PERFORMANCE_BOOK_VALUE *
-          (e.close / performanceAndBenchmarks.sp500[0].close - 1),
+        y: e.close,
       };
     });
 
     const dji = performanceAndBenchmarks.dji.map((e) => {
       return {
         x: e.timestamp,
-        y:
-          Config.PERFORMANCE_BOOK_VALUE *
-          (e.close / performanceAndBenchmarks.dji[0].close - 1),
+        y: e.close,
       };
     });
 
@@ -584,9 +589,6 @@ export async function getMetrics() {
     throw new Error(Config.ERROR_CONTACTING_SERVER);
   }
 
-  // {"start":1611194400000,"end":1611194400089,"type":1}
-  // {"type":4,"endTimestamp":1621265097448,"value":-1,"startTimestamp":1621264951527}
-
   const metrics = {};
 
   const datapointsRecommendedSymbols = jsonData
@@ -607,14 +609,14 @@ export async function getMetrics() {
 
   metrics["datapointsStateInvestments"] = datapointsStateInvestments;
 
-  const datapointsListTraders = jsonData
-    .filter((e) => e.type === Config.SCHEDULER_PROCESS_LIST_TRADERS)
+  const datapointsFundamentals = jsonData
+    .filter((e) => e.type === Config.SCHEDULER_PROCESS_FUNDAMENTALS)
     .map((e) => ({
       x: new Date(e.startTimestamp),
       y: e.endTimestamp - e.startTimestamp,
     }));
 
-  metrics["datapointsListTraders"] = datapointsListTraders;
+  metrics["datapointsFundamentals"] = datapointsFundamentals;
 
   const datapointsStockNews = jsonData
     .filter((e) => e.type === Config.SCHEDULER_PROCESS_STOCK_NEWS)

@@ -15,7 +15,7 @@ function MarketState(props) {
   let innerHTML;
 
   if (
-    marketState[marketState.length - 1].timestamp >
+    marketState[marketState.length - 1]?.timestamp >
     todaysEpoch - 5 * 86400000
   ) {
     for (let i = marketState.length - 4; i < marketState.length; i++) {

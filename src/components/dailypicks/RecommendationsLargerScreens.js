@@ -212,11 +212,12 @@ function RecommendationsLargerScreens(props) {
 
   useEffect(() => {
     if (!highlighted) {
-      dispatch(
-        panelsSlice.actions.highlight(
-          recommendations[indexFirstTableElement][0]
-        )
-      );
+      if (recommendations?.length > 0)
+        dispatch(
+          panelsSlice.actions.highlight(
+            recommendations[indexFirstTableElement][0]
+          )
+        );
     }
   }, [
     highlighted,
