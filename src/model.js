@@ -274,7 +274,7 @@ export function getGlobalInvestmentsGraph(investments) {
     investments.forEach(function (investment) {
       for (let i = 0; i < investment.timestamps.length; i++) {
         if (
-          (investment.state !== 4 ||
+          (investment.state !== 3 ||
             timestamp < investment.selling_timestamp) &&
           investment.timestamps[i] === timestamp &&
           investment.buying_timestamp !== timestamp
@@ -283,7 +283,7 @@ export function getGlobalInvestmentsGraph(investments) {
             investment.closes[i] -
             investment.buying_price * investment.buying_number;
       }
-      if (investment.state === 4 && timestamp >= investment.selling_timestamp)
+      if (investment.state === 3 && timestamp >= investment.selling_timestamp)
         balances[idx] +=
           (investment.selling_price - investment.buying_price) *
           investment.buying_number;
@@ -317,7 +317,7 @@ export function getGlobalInvestmentsGraph(investments) {
   timestamps.forEach(function (timestamp, idx) {
     investments.forEach((investment) => {
       if (investment.buying_timestamp === timestamp) buys[idx] = balances[idx];
-      if (investment.state === 4 && investment.selling_timestamp === timestamp)
+      if (investment.state === 3 && investment.selling_timestamp === timestamp)
         sells[idx] = balances[idx];
     });
   });

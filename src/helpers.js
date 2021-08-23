@@ -168,11 +168,11 @@ export function getEpochFromDateString(date) {
  */
 export function getSortedInvestments(investments) {
   const sortedOpenInvestments = investments
-    .filter((e) => e.state !== 4)
+    .filter((e) => e.state !== 3)
     .sort((a, b) => b.buying_timestamp - a.buying_timestamp);
 
   const sortedClosedInvestments = investments
-    .filter((e) => e.state === 4)
+    .filter((e) => e.state === 3)
     .sort((a, b) => b.buying_timestamp - a.buying_timestamp);
 
   let sortedInvestments = [
