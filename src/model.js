@@ -627,18 +627,18 @@ export async function getMetrics() {
 
   metrics["datapointsStockNews"] = datapointsStockNews;
 
-  const datapointsNumberDataIsFaulty = jsonData
+  const datapointsNumberIsDelisted = jsonData
     .filter(
       (e) =>
         e.type ===
-        Config.SCHEDULER_PROCESS_REFRESH_DATA_METRIC_TYPE_ERROR_DATA_IS_FAULTY
+        Config.SCHEDULER_PROCESS_REFRESH_DATA_METRIC_TYPE_ERROR_IS_DELISTED
     )
     .map((e) => ({
       x: new Date(e.startTimestamp),
       y: e.value,
     }));
 
-  metrics["datapointsNumberDataIsFaulty"] = datapointsNumberDataIsFaulty;
+  metrics["datapointsNumberIsDelisted"] = datapointsNumberIsDelisted;
 
   const datapointsNumberStockNoData = jsonData
     .filter(
@@ -681,20 +681,6 @@ export async function getMetrics() {
   metrics["datapointsNumberStockIsDiscontinuous"] =
     datapointsNumberStockIsDiscontinuous;
 
-  const datapointsNumberStockIsPartiallyLinear = jsonData
-    .filter(
-      (e) =>
-        e.type ===
-        Config.SCHEDULER_PROCESS_REFRESH_DATA_METRIC_TYPE_ERROR_IS_PARTIALLY_LINEAR
-    )
-    .map((e) => ({
-      x: new Date(e.startTimestamp),
-      y: e.value,
-    }));
-
-  metrics["datapointsNumberStockIsPartiallyLinear"] =
-    datapointsNumberStockIsPartiallyLinear;
-
   const datapointsNumberErrors = jsonData
     .filter(
       (e) =>
@@ -722,6 +708,32 @@ export async function getMetrics() {
   metrics["datapointsNumberStockDataIsStillFresh"] =
     datapointsNumberStockDataIsStillFresh;
 
+  const datapointsNumberManuallyRemoved = jsonData
+    .filter(
+      (e) =>
+        e.type ===
+        Config.SCHEDULER_PROCESS_REFRESH_DATA_METRIC_TYPE_ERROR_MANUALLY_REMOVED
+    )
+    .map((e) => ({
+      x: new Date(e.startTimestamp),
+      y: e.value,
+    }));
+
+  metrics["datapointsNumberManuallyRemoved"] = datapointsNumberManuallyRemoved;
+
+  const datapointsNumberLowVolume = jsonData
+    .filter(
+      (e) =>
+        e.type ===
+        Config.SCHEDULER_PROCESS_REFRESH_DATA_METRIC_TYPE_ERROR_LOW_VOLUME
+    )
+    .map((e) => ({
+      x: new Date(e.startTimestamp),
+      y: e.value,
+    }));
+
+  metrics["datapointsNumberLowVolume"] = datapointsNumberLowVolume;
+
   let datapointsNumberOk = jsonData
     .filter(
       (e) => e.type === Config.SCHEDULER_PROCESS_REFRESH_DATA_METRIC_TYPE_OK
@@ -737,13 +749,14 @@ export async function getMetrics() {
     .map(
       (e, idx) =>
         e.y +
-        datapointsNumberStockDataIsStillFresh[idx].y +
-        datapointsNumberErrors[idx].y +
-        datapointsNumberStockIsPartiallyLinear[idx].y +
-        datapointsNumberStockIsDiscontinuous[idx].y +
-        datapointsNumberStockConversionForex[idx].y +
+        datapointsNumberIsDelisted[idx].y +
         datapointsNumberStockNoData[idx].y +
-        datapointsNumberDataIsFaulty[idx].y
+        datapointsNumberStockIsDiscontinuous[idx].y +
+        datapointsNumberErrors[idx].y +
+        datapointsNumberStockDataIsStillFresh[idx].y +
+        datapointsNumberStockConversionForex[idx].y +
+        datapointsNumberManuallyRemoved[idx].y +
+        datapointsNumberLowVolume[idx].y
     )
     .reduce((agg, ele) => (ele > agg ? ele : agg), 0);
 

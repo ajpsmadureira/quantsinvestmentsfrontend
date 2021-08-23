@@ -193,10 +193,8 @@ export function getRecommendation(state) {
     case 1:
       return "Hold";
     case 2:
-      return "Dump";
-    case 3:
       return "Sell";
-    case 4:
+    case 3:
       return "Closed";
     default:
       break;

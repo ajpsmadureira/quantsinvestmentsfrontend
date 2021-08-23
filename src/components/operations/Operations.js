@@ -99,26 +99,30 @@ function Operations() {
 
     Array.of(
       {
-        data: metrics.datapointsNumberDataIsFaulty,
-        label: "numberDataIsFaulty",
+        data: metrics.datapointsNumberIsDelisted,
+        label: "numberIsDelisted",
       },
       { data: metrics.datapointsNumberStockNoData, label: "numberStockNoData" },
       {
-        data: metrics.datapointsNumberStockConversionForex,
-        label: "numberStockConversionForex",
-      },
-      {
         data: metrics.datapointsNumberStockIsDiscontinuous,
         label: "numberStockIsDiscontinuous",
-      },
-      {
-        data: metrics.datapointsNumberStockIsPartiallyLinear,
-        label: "numberStockIsPartiallyLinear",
       },
       { data: metrics.datapointsNumberErrors, label: "numberErrors" },
       {
         data: metrics.datapointsNumberStockDataIsStillFresh,
         label: "numberStockDataIsStillFresh",
+      },
+      {
+        data: metrics.datapointsNumberStockConversionForex,
+        label: "numberStockConversionForex",
+      },
+      {
+        data: metrics.datapointsNumberManuallyRemoved,
+        label: "numberManuallyRemoved",
+      },
+      {
+        data: metrics.datapointsNumberLowVolume,
+        label: "numberLowVolume",
       },
       { data: metrics.datapointsNumberOk, label: "numberOk" },
       { data: metrics.datapointsNumberNok, label: "numberNok" }

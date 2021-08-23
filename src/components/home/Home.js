@@ -56,6 +56,8 @@ function Home(props) {
 
     const dji = props.performanceData[2];
 
+    chart.options.axisY.logarithmic = true;
+
     chart.options.data = [];
 
     chart.options.data.push({
@@ -92,14 +94,14 @@ function Home(props) {
       "Stock portfolio backtest performance following Quants.Investments advice (WIP)"
     );
 
-    const performanceYield = Math.round(
-      (performance[performance.length - 1].y * 100) / performance[0].y
-    );
+    // const performanceYield = Math.round(
+    //   (performance[performance.length - 1].y * 100) / performance[0].y
+    // );
 
-    chart.subtitles[0].set(
-      "text",
-      `Yield: ${performanceYield >= 0 ? "+" : "-"}${performanceYield}%`
-    );
+    // chart.subtitles[0].set(
+    //   "text",
+    //   `Yield: ${performanceYield >= 0 ? "+" : "-"}${performanceYield}%`
+    // );
   }, [props.performanceData]);
 
   return (
@@ -311,8 +313,8 @@ function Home(props) {
               </div>
               <h4 className="info-title">Investments Panel</h4>
               <p className="description px-0">
-                Register your investments to receive sell/hold/dump management
-                advice about them
+                Register your investments to receive hold/sell management advice
+                about them
               </p>
             </div>
             <div className="text-center">
@@ -373,8 +375,8 @@ function Home(props) {
                   >
                     <h3>Investments Panel</h3>
                     <p>
-                      Register your investments to receive sell/hold/dump
-                      management advice about them
+                      Register your investments to receive hold/sell management
+                      advice about them
                     </p>
                   </Carousel.Caption>
                 </Carousel.Item>
